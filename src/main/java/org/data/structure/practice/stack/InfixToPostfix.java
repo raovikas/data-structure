@@ -4,7 +4,7 @@ package org.data.structure.practice.stack;
 
 import java.util.Stack;
 
-class InfixToPostFix
+class InfixToPostfix
 {
    // A utility function to return precedence of a given operator
    // Higher returned value means higher precedence
