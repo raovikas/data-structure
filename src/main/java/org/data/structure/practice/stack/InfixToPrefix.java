@@ -1,0 +1,159 @@
+package org.data.structure.practice.stack;
+
+import java.util.Stack;
+
+/*
+ * Step 1: Reverse the infix expression i.e A+B*C will become C*B+A. Note while reversing each ‘(‘ will become ‘)’ and each ‘)’ becomes ‘(‘.
+Step 2: Obtain the postfix expression of the modified expression i.e CB*A+.
+Step 3: Reverse the postfix expression. Hence in our example prefix is +A*BC.
+ */
+public class InfixToPrefix
+{
+   public static void main(String[] args)
+   {
+      InfixToPrefix test = new InfixToPrefix();
+      String expression = "a^b^c";
+
+
+      //Reverse the infix expression
+      String reverseString = test.reverse(expression);
+
+      //Obtain the postfix expression of the modified expression
+      String infixToPostFix = test.infixToPostfix(reverseString);
+
+      // Reverse the postfix expression
+      String infixToPrefix = test.reverse(infixToPostFix);
+
+      System.out.println("infixToPrefix-> "+infixToPrefix);
+
+
+   }
+
+   // The main method that converts given infix expression
+   // to postfix expression.
+   private String infixToPostfix(String exp)
+   {
+      // initializing empty String for result
+      String result = new String("");
+
+      // initializing empty stack
+      Stack<Character> stack = new Stack<>();
+
+      for (int i = 0; i<exp.length(); i++)
+      {
+         char c = exp.charAt(i);
+
+         // If the scanned character is an operand, add it to output.
+         if (Character.isLetterOrDigit(c))
+            result += c;
+
+         // If the scanned character is an '(', push it to the stack.
+         else if (c == '(')
+            stack.push(c);
+
+         // If the scanned character is an ')', pop and output from the stack
+         // until an '(' is encountered.
+         else if (c == ')')
+         {
+            while (!stack.isEmpty() && stack.peek() != '(')
+               result += stack.pop();
+
+            if (stack.isEmpty())
+               return "Invalid Expression"; // invalid expression
+            else
+               stack.pop();
+         }
+         else // an operator is encountered
+         {
+
+            while (!stack.isEmpty() && HasHigherPrecedence(stack.peek(),c)){
+               result += stack.pop();
+            }
+            stack.push(c);
+         }
+
+      }
+
+
+      // pop all the operators from the stack
+      while (!stack.isEmpty()){
+         result += stack.pop();
+      }
+      return result;
+   }
+
+   // Function to perform an operation and return output.
+   private boolean HasHigherPrecedence(char op1, char op2)
+   {
+      int op1Weight = GetOperatorWeight(op1);
+      int op2Weight = GetOperatorWeight(op2);
+
+      // If operators have equal precedence, return true if they are left associative.
+      // return false, if right associative.
+      // if operator is left-associative, left one should be given priority.
+      if(op1Weight == op2Weight)
+      {
+         if(IsRightAssociative(op1)) return false;
+         else return true;
+      }
+      return op1Weight > op2Weight ?  true: false;
+   }
+
+   // Function to verify whether an operator is right associative or not.
+   static boolean IsRightAssociative(char op)
+   {
+      if(op == '^') return true;
+      return false;
+   }
+
+
+   private String reverse(String expression)
+   {
+      char[] c = expression.toCharArray();
+      char temp;
+      int i = 0;
+      int j = c.length - 1;
+      while (j > i)
+      {
+         temp = c[i];
+         if(c[j] == '(')
+            c[i]= ')';
+         else if(c[j] ==')')
+            c[i] = '(';
+         else
+            c[i] = c[j];
+
+
+         if(temp == ')')
+            c[j] ='(';
+         else if(temp == '(')
+            c[j] = ')';
+         else
+            c[j] = temp;
+
+         i++;
+         j--;
+      }
+      return String.valueOf(c);
+   }
+
+   // A utility function to return precedence of a given operator
+   // Higher returned value means higher precedence
+   private int GetOperatorWeight(char ch)
+   {
+      switch (ch)
+      {
+      case '+':
+      case '-':
+         return 1;
+
+      case '*':
+      case '/':
+         return 2;
+
+      case '^':
+         return 3;
+      }
+      return -1;
+   }
+}
