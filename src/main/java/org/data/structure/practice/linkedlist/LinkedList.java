@@ -45,6 +45,9 @@ public class LinkedList
       System.out.println("after deleting 8 from linkedlist");
       llist.deleteNode(8);
       llist.traversal();
+      System.out.println("after delete node at position 2 ");
+      llist.deleteNodeAtPosition(2);
+      llist.traversal();
    }
 
    public void traversal()
@@ -124,6 +127,42 @@ public class LinkedList
       }
 
       prev.next = current.next;
+
+   }
+
+   /*
+    * Delete a Linked List node at a given position Input: position = 1, Linked List = 8->2->3->1->7 Output: Linked List = 8->3->1->7
+    *
+    * Input: position = 0, Linked List = 8->2->3->1->7 Output: Linked List = 2->3->1->7
+    *
+    */
+   public void deleteNodeAtPosition(int position)
+   {
+      // If linked list is empty
+      if (head == null)
+         return;
+
+      Node temp = head;
+      if (position == 0)
+      {
+         head = temp.next;
+         return;
+      }
+      int currentPostion = 0;
+
+      while (temp != null && currentPostion < position - 1)
+      {
+         temp = temp.next;
+         currentPostion += 1;
+      }
+
+      if (temp == null || temp.next == null)
+      {
+         return;
+      }
+
+      Node node = temp.next.next;
+      temp.next = node;
 
    }
 }
