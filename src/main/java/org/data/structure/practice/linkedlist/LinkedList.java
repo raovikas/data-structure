@@ -42,6 +42,9 @@ public class LinkedList
       Node newNode = new Node(2);
       llist.insertAfterGivenNode(node1, newNode);
       llist.traversal();
+      System.out.println("after deleting 8 from linkedlist");
+      llist.deleteNode(8);
+      llist.traversal();
    }
 
    public void traversal()
@@ -53,7 +56,7 @@ public class LinkedList
          System.out.print(pointer.data + "->");
          pointer = pointer.next;
       }
-      System.out.println("null");//just to represent linkedList its do not required
+      System.out.println("null");// just to represent linkedList its do not required
    }
 
    // insert node at front of the linked list
@@ -94,6 +97,33 @@ public class LinkedList
       }
       newNode.next = prevNode.next;
       prevNode.next = newNode;
+
+   }
+
+   // delete the first occurrence of given key in linked list
+   public void deleteNode(int key)
+   {
+      Node current = head;
+      Node prev = null;
+      if (current != null && current.data == key)
+      {
+         head = current.next;
+         return;
+      }
+
+      while (current != null && current.data != key)
+      {
+         prev = current;
+         current = current.next;
+      }
+
+      if (current == null)
+      {
+         System.out.println("key is not present is this linked list");
+         return;
+      }
+
+      prev.next = current.next;
 
    }
 }
