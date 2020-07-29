@@ -48,6 +48,9 @@ public class LinkedList
       System.out.println("after delete node at position 2 ");
       llist.deleteNodeAtPosition(2);
       llist.traversal();
+      System.out.println("Reverse linked list");
+      llist.reverseLinkedList();
+      llist.traversal();
    }
 
    public void traversal()
@@ -163,6 +166,26 @@ public class LinkedList
 
       Node node = temp.next.next;
       temp.next = node;
+
+   }
+
+   //reverse linkedlist
+   public void reverseLinkedList()
+   {
+      Node current = head;
+      Node prv = null;
+      Node temp;
+      if (current == null)
+         return;
+      while (current!= null)
+      {
+         temp = prv;
+         prv = current;
+         current = current.next;
+         prv.next = temp;
+      }
+
+      head = prv;
 
    }
 }
