@@ -51,6 +51,10 @@ public class LinkedList
       System.out.println("Reverse linked list");
       llist.reverseLinkedList();
       llist.traversal();
+      int length = llist.length();
+      System.out.println("length of LinkedList using iterative: " + length);
+      int count = llist.count(llist.head);
+      System.out.println("length of LinkedList using recursive: " + count);
    }
 
    public void traversal()
@@ -169,7 +173,7 @@ public class LinkedList
 
    }
 
-   //reverse linkedlist
+   // reverse linkedlist
    public void reverseLinkedList()
    {
       Node current = head;
@@ -177,7 +181,7 @@ public class LinkedList
       Node temp;
       if (current == null)
          return;
-      while (current!= null)
+      while (current != null)
       {
          temp = prv;
          prv = current;
@@ -186,6 +190,33 @@ public class LinkedList
       }
 
       head = prv;
+
+   }
+
+   /* get length using
+    * linkedlist iterative
+    */
+   public int length()
+   {
+      int length = 0;
+      Node current = head;
+      while(current != null)
+      {
+         current = current.next;
+         length += 1;
+      }
+
+      return length;
+   }
+
+   /*
+    * Get length using recursive
+    */
+   public int count(Node node)
+   {
+      if(node == null)
+         return 0;
+      return 1+ count(node.next);
 
    }
 }
