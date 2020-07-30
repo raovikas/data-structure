@@ -55,6 +55,8 @@ public class LinkedList
       System.out.println("length of LinkedList using iterative: " + length);
       int count = llist.count(llist.head);
       System.out.println("length of LinkedList using recursive: " + count);
+      System.out.println("found  element 9 in LinkedList: "+llist.searchElement(llist.head, 9));
+      System.out.println("found  element 2 in LinkedList: "+llist.search(llist.head, 2));
    }
 
    public void traversal()
@@ -193,14 +195,14 @@ public class LinkedList
 
    }
 
-   /* get length using
-    * linkedlist iterative
+   /*
+    * get length using linkedlist iterative
     */
    public int length()
    {
       int length = 0;
       Node current = head;
-      while(current != null)
+      while (current != null)
       {
          current = current.next;
          length += 1;
@@ -214,9 +216,41 @@ public class LinkedList
     */
    public int count(Node node)
    {
-      if(node == null)
+      if (node == null)
          return 0;
-      return 1+ count(node.next);
+      return 1 + count(node.next);
 
    }
+
+   /*
+    * search an element in LinkedList using recurrsive
+    */
+   public boolean searchElement(Node node,int element)
+   {
+      while(node!=null && node.data!=element)
+      {
+         node = node.next;
+      }
+      if(node == null)
+         return false;
+      return true;
+   }
+
+   // Checks whether the value x is present
+   // in linked list using recurrsive
+   public boolean search(Node head, int x)
+   {
+      // Base case
+      if (head == null)
+         return false;
+
+      // If key is present in current node,
+      // return true
+      if (head.data == x)
+         return true;
+
+      // Recur for remaining list
+      return search(head.next, x);
+   }
+
 }
