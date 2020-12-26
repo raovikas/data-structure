@@ -4,7 +4,7 @@ public class HigherArrayApp
 {
    public static void main(String[] args)
    {
-      HigherArray hightArray = new HigherArray(6);
+      HigherArray hightArray = new HigherArray(10);
       hightArray.insert(2);
       hightArray.insert(7);
       hightArray.insert(5);
@@ -15,6 +15,7 @@ public class HigherArrayApp
       hightArray.find(5);
       hightArray.delete(5);
       hightArray.display();
+
 
    }
 }

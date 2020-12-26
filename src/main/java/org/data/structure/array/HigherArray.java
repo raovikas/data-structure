@@ -35,6 +35,11 @@ public class HigherArray
 
    }
 
+   public int size()
+   {
+      return nElement;
+   }
+
    public boolean delete(long element)
    {
       int i ;
