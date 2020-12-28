@@ -1,4 +1,4 @@
-package org.data.structure.array;
+package org.data.structure.practice.array;
 
 /* unordered primitive type array*/
 public class HigherArray

@@ -1,4 +1,4 @@
-package org.data.structure.array;
+package org.data.structure.practice.array;
 
 /* ordered primitive type element array */
 public class HigherOrderedArray
