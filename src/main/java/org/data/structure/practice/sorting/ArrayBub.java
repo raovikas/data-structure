@@ -74,10 +74,10 @@ public class ArrayBub
 
    public void bubbleSort()
    {
-      for(int i=1;i<nElement-1;i++)
+      for(int i = 0; i<nElement-1;i++)
       {
          int flags = 0;
-         for(int j = 0; j<(nElement-i);j++)
+         for(int j =0; j<nElement-1-i;j++)
          {
             if(longArray[j]>longArray[j+1])
             {
