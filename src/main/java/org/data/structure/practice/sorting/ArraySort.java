@@ -1,13 +1,13 @@
 package org.data.structure.practice.sorting;
 
 /* unordered primitive type array*/
-public class ArrayBub
+public class ArraySort
 {
 
    private long[] longArray; // ref to array longArray
    private int nElement; // no of data items
 
-   public ArrayBub(int max)
+   public ArraySort(int max)
    {
       longArray = new long[max]; // create the array
       nElement = 0; // no item yet
@@ -81,7 +81,7 @@ public class ArrayBub
          {
             if(longArray[j]>longArray[j+1])
             {
-               swapElement(j);
+               swap(j,j+1);
                flags = 1;
             }
          }
@@ -89,11 +89,30 @@ public class ArrayBub
       }
    }
 
-   private void swapElement(int j)
+
+
+   public void selectionSort()
    {
-      long  temp = longArray[j+1];
-      longArray[j+1] = longArray[j];
-      longArray[j] = temp;
+      for(int i=0;i<nElement-1;i++)
+      {
+         int min=i;
+
+         for(int j=i+1;j<nElement;j++)
+         {
+            if(longArray[min]>longArray[j])
+            {
+               min = j;
+            }
+         }
+         swap(i,min);
+      }
+   }
+
+   private void swap(int one, int two)
+   {
+      long temp = longArray[one];
+      longArray[one] = longArray[two];
+      longArray[two] = temp;
    }
 
 
