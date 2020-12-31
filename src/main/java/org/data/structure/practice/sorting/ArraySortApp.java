@@ -17,8 +17,9 @@ public class ArraySortApp
 
 
       arr.display(); // display items
-      arr.bubbleSort(); // bubble sort them
+      //arr.bubbleSort(); // bubble sort them
       //arr.selectionSort(); // selection sort
+      arr.insertionSort(); //insertion sort
       arr.display(); // display them again
    }
 }

@@ -42,20 +42,20 @@ public class ArraySort
 
    public boolean delete(long element)
    {
-      int i ;
-      for(i=0;i<nElement;i++)
+      int i;
+      for (i = 0; i < nElement; i++)
       {
-         if(longArray[i] == element)
+         if (longArray[i] == element)
             break;
       }
 
-      if(i == nElement)
+      if (i == nElement)
          return false;
       else
       {
-         for(int k=i;k<nElement-1;k++)  // 1 ,2 ,3, 4 ,5  //2
+         for (int k = i; k < nElement - 1; k++) // 1 ,2 ,3, 4 ,5 //2
          {
-            longArray[k] = longArray[k+1];
+            longArray[k] = longArray[k + 1];
          }
          nElement--;
          return true;
@@ -65,46 +65,61 @@ public class ArraySort
 
    public void display()
    {
-      for(int i=0;i<nElement;i++)
+      for (int i = 0; i < nElement; i++)
       {
-         System.out.print(longArray[i]+" ");
+         System.out.print(longArray[i] + " ");
       }
       System.out.println("");
    }
 
    public void bubbleSort()
    {
-      for(int i = 0; i<nElement-1;i++)
+      for (int i = 0; i < nElement - 1; i++)
       {
          int flags = 0;
-         for(int j =0; j<nElement-1-i;j++)
+         for (int j = 0; j < nElement - 1 - i; j++)
          {
-            if(longArray[j]>longArray[j+1])
+            if (longArray[j] > longArray[j + 1])
             {
-               swap(j,j+1);
+               swap(j, j + 1);
                flags = 1;
             }
          }
-         if(flags == 0) break;
+         if (flags == 0)
+            break;
       }
    }
 
-
-
    public void selectionSort()
    {
-      for(int i=0;i<nElement-1;i++)
+      for (int i = 0; i < nElement - 1; i++)
       {
-         int min=i;
+         int min = i;
 
-         for(int j=i+1;j<nElement;j++)
+         for (int j = i + 1; j < nElement; j++)
          {
-            if(longArray[min]>longArray[j])
+            if (longArray[min] > longArray[j])
             {
                min = j;
             }
          }
-         swap(i,min);
+         swap(i, min);
+      }
+   }
+
+   public void insertionSort()
+   {
+      for (int i = 0; i < nElement; i++)
+      {
+         long temp = longArray[i];
+         int j = i;
+         while (j > 0 && temp < longArray[j - 1])
+         {
+            longArray[j] = longArray[j - 1];
+            j = j - 1;
+         }
+
+         longArray[j] = temp;
       }
    }
 
@@ -114,6 +129,5 @@ public class ArraySort
       longArray[one] = longArray[two];
       longArray[two] = temp;
    }
-
 
 }
