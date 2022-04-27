@@ -26,11 +26,13 @@ public class GraphAdjacencyMatrix {
 		}
 
 		for (int i = 0; i < vertix; i++) {
+			System.out.print("Vertix " + i + " is connected to:");
 			for (int j = 0; j < vertix; j++) {
 				if (matrix[i][j] == 1) {
-					System.out.println("vertix " + i + " is connected with vertix " + j);
+					System.out.print(j+" ");
 				}
 			}
+			System.out.println();
 		}
 	}
 
