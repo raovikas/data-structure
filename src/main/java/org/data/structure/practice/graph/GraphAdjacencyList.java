@@ -1,6 +1,7 @@
 package org.data.structure.practice.graph;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class GraphAdjacencyList {
 
@@ -47,7 +48,25 @@ public class GraphAdjacencyList {
 		adjList.addEdge(3, 2);
 		adjList.addEdge(3, 4);
 		adjList.addEdge(2, 4);
-		
+
 		System.out.println(adjList);
+		adjList.bfs(1);
+	}
+
+	private void bfs(int source) {
+		Queue<Integer> queue = new LinkedList<>();
+		boolean[] visited = new boolean[V];
+		visited[source] = true;
+		queue.offer(source);
+		while (!queue.isEmpty()) {
+			int u = queue.poll();
+			System.out.print(u+"  ");
+			for (Integer v : adj[u]) {
+				if (!visited[v]) {
+					visited[v] = true;
+					queue.offer(v);
+				}
+			}
+		}
 	}
 }
